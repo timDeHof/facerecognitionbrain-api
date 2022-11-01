@@ -27,10 +27,10 @@ const handleApiCall = (req, res) => {
         return
       }
 
-      console.log("Predicted concepts, with confidence values:")
-      for (const c of response.outputs[0].data.concepts) {
-        console.log(c.name + ": " + c.value)
-      }
+      console.log(`Found ${response.outputs[0].data.regions.length} faces!`)
+      // for (const c of response.outputs[0].data.regions) {
+      //   console.log(c.name + ": " + c.value)
+      // }
       res.json(response)
     }
   )
