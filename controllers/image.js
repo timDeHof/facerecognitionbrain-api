@@ -1,4 +1,4 @@
-const Clarifai = require("clarifai")
+// const Clarifai = require("clarifai")
 
 const { ClarifaiStub, grpc } = require("clarifai-nodejs-grpc")
 
