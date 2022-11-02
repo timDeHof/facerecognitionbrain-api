@@ -28,7 +28,7 @@ app.post("/register", register.handleRegister(db, bcrypt))
 app.get("/profile/:id", profile.handleProfileGet(db))
 app.put("/image", image.handleImage(db))
 app.post("/imageurl", (req, res) => image.handleApiCall(req, res))
-
+// for heroku
 app.listen(process.env.PORT || 3000, () => {
   console.log(`app listening on port ${process.env.PORT}`)
 })
