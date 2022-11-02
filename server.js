@@ -8,6 +8,13 @@ const image = require("./controllers/image")
 const profile = require("./controllers/profile")
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0
 const db = knex({
+  // client: "pg",
+  // user: "timDeHof",
+  // host: "db.bit.io",
+  // datebase: "timDeHof/smart-brain",
+  // password: "v2_3vGVR_FG3QiBjuRTYsqMkZypA6jCe",
+  // port: 5432,
+  // ssl: true,
   client: "pg",
   connection: {
     connectionString: process.env.DATABASE_URL,
@@ -29,6 +36,6 @@ app.get("/profile/:id", profile.handleProfileGet(db))
 app.put("/image", image.handleImage(db))
 app.post("/imageurl", (req, res) => image.handleApiCall(req, res))
 // for heroku
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`app listening on port ${process.env.PORT}`)
+app.listen(3000, () => {
+  console.log(`app listening on port 3000`)
 })
