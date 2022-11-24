@@ -35,7 +35,7 @@ const handleApiCall = (req, res) => {
     }
   )
 }
-const handleImage = (db) => (req, res) => {
+const handleImage = (pool) => (req, res) => {
   const { id } = req.body
   db("users")
     .where("id", "=", id)
