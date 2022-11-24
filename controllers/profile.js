@@ -1,4 +1,4 @@
-const handleProfileGet = (db) => (req, res) => {
+const handleProfileGet = (req, res, db) => (req, res) => {
   const { id } = req.params
   db.select("*")
     .from("users")
