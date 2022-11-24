@@ -1,7 +1,6 @@
-const handleProfileGet = (pool) => (req, res) => {
+const handleProfileGet = (db) => (req, res) => {
   const { id } = req.params
-  pool
-    .select("*")
+  db.select("*")
     .from("users")
     .where({ id })
     .then((user) => {
