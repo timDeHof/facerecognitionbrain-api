@@ -33,7 +33,7 @@ app.use(cors())
 app.use(express.json())
 
 app.get("/", (req, res) => {
-  res.send(db.users)
+  res.json(db.users)
 })
 app.post("/signin", signin.handleSignin(db, bcrypt))
 app.post("/register", (req, res) => {
