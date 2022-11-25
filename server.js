@@ -46,6 +46,7 @@ app.post("/register", (req, res) => {
       joined: new Date(),
     })
     .then(console.log)
+  res.json(users[users.length - 1])
   // register.handleRegister(req, res, db, bcrypt)
 })
 app.get("/profile/:id", (req, res) => {
