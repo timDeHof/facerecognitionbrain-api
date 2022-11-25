@@ -21,11 +21,11 @@ const db = knex({
   },
 })
 
-db.select("*")
-  .from("users")
-  .then((data) => {
-    console.log(data)
-  })
+// db.select("*")
+//   .from("users")
+//   .then((data) => {
+//     console.log(data)
+//   })
 
 const app = express()
 
@@ -39,17 +39,17 @@ app.post("/signin", signin.handleSignin(db, bcrypt))
 app.post("/register", (req, res) => {
   const { email, name, password } = req.body
   db("users")
-    .returning("*")
-    .insert({
-      email: email,
-      name: name,
-      joined: new Date(),
-    })
-    .then((user) => {
-      res.json(user[0])
-    })
-    .catch((err) => res.status(400).json("unable to join"))
-  // register.handleRegister(req, res, db, bcrypt)
+  // returning("*.")
+  // .insert({
+  //   email: email,
+  //   name: name,
+  //   joined: new Date(),
+  // })
+  // .then((user) => {
+  //   res.json(user[0])
+  // })
+  // .catch((err) => res.status(400).json("unable to join"))
+  register.handleRegister(req, res, db, bcrypt)
 })
 app.get("/profile/:id", (req, res) => {
   profile.handleProfileGet(req, res, db)
