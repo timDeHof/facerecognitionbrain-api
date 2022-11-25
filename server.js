@@ -38,7 +38,15 @@ app.get("/", (req, res) => {
 })
 app.post("/signin", signin.handleSignin(db, bcrypt))
 app.post("/register", (req, res) => {
-  register.handleRegister(req, res, db, bcrypt)
+  const { email, name, password } = req.body
+  db("users")
+    .insert({
+      email: email,
+      name: name,
+      joined: new Date(),
+    })
+    .then(console.log)
+  // register.handleRegister(req, res, db, bcrypt)
 })
 app.get("/profile/:id", (req, res) => {
   profile.handleProfileGet(req, res, db)
