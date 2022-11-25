@@ -40,13 +40,15 @@ app.post("/signin", signin.handleSignin(db, bcrypt))
 app.post("/register", (req, res) => {
   const { email, name, password } = req.body
   db("users")
+    .returning("*")
     .insert({
       email: email,
       name: name,
       joined: new Date(),
     })
-    .then(console.log)
-  res.json(db.users)
+    .then((response) => {
+      res.json(response)
+    })
   // register.handleRegister(req, res, db, bcrypt)
 })
 app.get("/profile/:id", (req, res) => {
