@@ -20,7 +20,7 @@ const db = knex({
     ssl: true,
   },
 })
-
+console.log(typeof db)
 // db.select("*")
 //   .from("users")
 //   .then((data) => {
