@@ -30,8 +30,8 @@ db.select("*")
 
 const app = express()
 
-app.use(express.json())
 app.use(cors())
+app.use(express.json())
 
 app.get("/", (req, res) => {
   res.send(db.users)
@@ -46,7 +46,7 @@ app.post("/register", (req, res) => {
       joined: new Date(),
     })
     .then(console.log)
-  res.json(users[users.length - 1])
+  res.json(db.users)
   // register.handleRegister(req, res, db, bcrypt)
 })
 app.get("/profile/:id", (req, res) => {
