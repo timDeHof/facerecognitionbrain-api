@@ -13,14 +13,20 @@ const knex = require("knex")
 const db = knex({
   client: "pg",
   connection: {
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_DATABASE,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
-    ssl: process.env.SSL,
+    host: "dpg-cdvu5io2i3mkucbpgdf0-a.oregon-postgres.render.com",
+    user: "smartbrain_hycf_user",
+    database: "smartbrain_hycf",
+    password: "oThegcGoKHzElfwvnE7ktcd9BLXw8fTh",
+    port: 5432,
+    ssl: true,
   },
 })
+
+db.select("*")
+  .from("users")
+  .then((data) => {
+    console.log(data)
+  })
 
 const app = express()
 
@@ -40,7 +46,7 @@ app.get("/profile/:id", (req, res) => {
 app.put("/image", (req, res) => image.handleImage(req, res, db))
 app.post("/imageurl", (req, res) => image.handleApiCall(req, res))
 
-const PORT = process.env.DB_PORT || 3000
+const PORT = 5432 || 3000
 app.listen(PORT, () => {
   console.log(`app listening on port ${PORT}`)
 })
