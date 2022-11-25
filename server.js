@@ -3,7 +3,6 @@ require("dotenv").config()
 
 const bcrypt = require("bcrypt-nodejs")
 const cors = require("cors")
-// const { Pool } = require("pg")
 const register = require("./controllers/register")
 const signin = require("./controllers/signin")
 const image = require("./controllers/image")
@@ -16,7 +15,7 @@ const db = knex({
     host: "dpg-cdvu5io2i3mkucbpgdf0-a.oregon-postgres.render.com",
     user: "smartbrain_hycf_user",
     database: "smartbrain_hycf",
-    password: "oThegcGoKHzElfwvnE7ktcd9BLXw8fTh",
+    password: process.env.DB_PASSWORD,
     port: 5432,
     ssl: true,
   },
@@ -38,19 +37,19 @@ app.get("/", (req, res) => {
 })
 app.post("/signin", signin.handleSignin(db, bcrypt))
 app.post("/register", (req, res) => {
-  const { email, name, password } = req.body
-  db("users")
-    .returning("*")
-    .insert({
-      email: email,
-      name: name,
-      joined: new Date(),
-    })
-    .then((user) => {
-      res.json(user[0])
-    })
-    .catch((err) => res.status(400).json("unable to join"))
-  // register.handleRegister(req, res, db, bcrypt)
+  // const { email, name, password } = req.body
+  // db("users")
+  //   .returning("*")
+  //   .insert({
+  //     email: email,
+  //     name: name,
+  //     joined: new Date(),
+  //   })
+  //   .then((user) => {
+  //     res.json(user[0])
+  //   })
+  //   .catch((err) => res.status(400).json("unable to join"))
+  register.handleRegister(req, res, db, bcrypt)
 })
 app.get("/profile/:id", (req, res) => {
   profile.handleProfileGet(req, res, db)
