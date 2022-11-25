@@ -49,7 +49,7 @@ app.post("/register", (req, res) => {
     .then((user) => {
       res.json(user[0])
     })
-    .catch((err) => res.status(400).json(err))
+    .catch((err) => res.status(400).json("unable to join"))
   // register.handleRegister(req, res, db, bcrypt)
 })
 app.get("/profile/:id", (req, res) => {
