@@ -20,11 +20,6 @@ const db = knex({
     ssl: true,
   },
 })
-// db.select("*")
-//   .from("users")
-//   .then((data) => {
-//     console.log(data)
-//   })
 
 const app = express()
 
