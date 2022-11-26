@@ -31,18 +31,6 @@ app.get("/", (req, res) => {
 })
 app.post("/signin", signin.handleSignin(db, bcrypt))
 app.post("/register", (req, res) => {
-  // const { email, name, password } = req.body
-  // db("users")
-  // returning("*.")
-  // .insert({
-  //   email: email,
-  //   name: name,
-  //   joined: new Date(),
-  // })
-  // .then((user) => {
-  //   res.json(user[0])
-  // })
-  // .catch((err) => res.status(400).json("unable to join"))
   register.handleRegister(req, res, db, bcrypt)
 })
 app.get("/profile/:id", (req, res) => {
