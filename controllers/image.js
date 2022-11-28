@@ -1,5 +1,3 @@
-// const Clarifai = require("clarifai")
-
 const { ClarifaiStub, grpc } = require("clarifai-nodejs-grpc")
 
 const stub = ClarifaiStub.grpc()
@@ -28,9 +26,7 @@ const handleApiCall = (req, res) => {
       }
 
       console.log(`Found ${response.outputs[0].data.regions.length} faces!`)
-      // for (const c of response.outputs[0].data.regions) {
-      //   console.log(c.name + ": " + c.value)
-      // }
+
       res.json(response)
     }
   )
