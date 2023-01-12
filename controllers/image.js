@@ -8,7 +8,7 @@ const handleApiCall = (req, res) => {
   stub.PostModelOutputs(
     {
       // This is the model ID of a publicly available General model. You may use any other public or custom model ID.
-      model_id: "6dc7e46bc9124c5c8824be4822abe105",
+      model_id: "face-detection",
       inputs: [{ data: { image: { url: req.body.input } } }],
     },
     metadata,
