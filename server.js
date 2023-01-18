@@ -1,4 +1,5 @@
 const express = require("express")
+const morgan = require("morgan")
 require("dotenv").config()
 
 const bcrypt = require("bcrypt-nodejs")
@@ -22,6 +23,7 @@ const db = knex({
 })
 
 const app = express()
+app.use(morgan("tiny"))
 
 app.use(cors({ origin: "*", methods: "*" }))
 app.use(express.json())
