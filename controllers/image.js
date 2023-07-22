@@ -4,27 +4,28 @@
  */
 
 const { ClarifaiStub, grpc } = require("clarifai-nodejs-grpc")
-/**
- * The Clarifai stub.
- * @type {ClarifaiStub}
- */
-const stub = ClarifaiStub.grpc()
-/**
- * The metadata for the API call.
- * @type {grpc.Metadata}
- */
-const metadata = new grpc.Metadata()
-/**
- * Sets the authorization header in the metadata.
- * @param {string} token - The API token.
- */
-metadata.set("authorization", `Key ${process.env.API_CLARIFAI}`)
+
 /**
  * Handles the API call for image recognition.
  * @param {Object} req - The request object.
  * @param {Object} res - The response object.
  */
 const handleApiCall = (req, res) => {
+  /**
+   * The Clarifai stub.
+   * @type {ClarifaiStub}
+   */
+  const stub = ClarifaiStub.grpc()
+  /**
+   * The metadata for the API call.
+   * @type {grpc.Metadata}
+   */
+  const metadata = new grpc.Metadata()
+  /**
+   * Sets the authorization header in the metadata.
+   * @param {string} token - The API token.
+   */
+  metadata.set("authorization", `Key ${process.env.API_CLARIFAI}`)
   stub.PostModelOutputs(
     {
       // This is the model ID of a publicly available General model. You may use any other public or custom model ID.
@@ -77,6 +78,6 @@ const handleImage = (req, res, db) => {
 }
 
 module.exports = {
-  handleImage: handleImage,
-  handleApiCall: handleApiCall,
+  handleImage,
+  handleApiCall,
 }
