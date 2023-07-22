@@ -1,3 +1,12 @@
+/**
+ * Handles the registration process.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Object} db - The database object.
+ * @param {Object} bcrypt - The bcrypt object for password hashing.
+ * @returns {void}
+ */
 const handleRegister = (req, res, db, bcrypt) => {
   const { email, name, password } = req.body
   if (!email || !password || !name) {
@@ -30,5 +39,10 @@ const handleRegister = (req, res, db, bcrypt) => {
 }
 
 module.exports = {
+  /**
+   * Exports the handleRegister function.
+   *
+   * @type {Function}
+   */
   handleRegister: handleRegister,
 }

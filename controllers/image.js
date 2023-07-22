@@ -1,9 +1,29 @@
+/**
+ * @fileoverview This file contains functions for handling image recognition using the Clarifai API.
+ * @module clarifai
+ */
+
 const { ClarifaiStub, grpc } = require("clarifai-nodejs-grpc")
-
+/**
+ * The Clarifai stub.
+ * @type {ClarifaiStub}
+ */
 const stub = ClarifaiStub.grpc()
-
+/**
+ * The metadata for the API call.
+ * @type {grpc.Metadata}
+ */
 const metadata = new grpc.Metadata()
+/**
+ * Sets the authorization header in the metadata.
+ * @param {string} token - The API token.
+ */
 metadata.set("authorization", `Key ${process.env.API_CLARIFAI}`)
+/**
+ * Handles the API call for image recognition.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ */
 const handleApiCall = (req, res) => {
   stub.PostModelOutputs(
     {
@@ -20,7 +40,10 @@ const handleApiCall = (req, res) => {
 
       if (response.status.code !== 10000) {
         console.log(
-          "Received failed status: " + response.status.description + "\n" + response.status.details
+          "Received failed status: " +
+            response.status.description +
+            "\n" +
+            response.status.details,
         )
         return
       }
@@ -28,9 +51,15 @@ const handleApiCall = (req, res) => {
       console.log(`Found ${response.outputs[0].data.regions.length} faces!`)
 
       res.json(response)
-    }
+    },
   )
 }
+/**
+ * Handles the image processing.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Object} db - The database object.
+ */
 const handleImage = (req, res, db) => {
   const { id } = req.body
   db("users")
